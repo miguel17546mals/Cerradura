@@ -29,6 +29,9 @@ class Sistema{
     Punto getG();
     Curva getCurva();
     char Decodificar(Punto M,Punto N);
+    Punto Codificar(Punto M,Punto publicKeyB);
+    //Punto publicKeyB();
+    Punto getkG();
     void setG(Punto G);
     void setCurva(Curva C);
     

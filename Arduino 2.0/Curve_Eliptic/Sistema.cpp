@@ -18,14 +18,7 @@ Sistema::Sistema(Curva C,Punto G){
 void Sistema::calcPublicKey(){
   this->publicKey= Aritmetica::MultEyP(this->privateKey,this->G,this->C.getA(),this->C.getP());  
 }
-/*
- * Métodos Accesores
- */
-Punto Sistema::getPublicKey(){return this->publicKey;}
-Punto Sistema::getG(){return this->G;}
-Curva Sistema::getCurva(){return this->C;}
-void Sistema::setG(Punto G){this->G=G;}
-void Sistema::setCurva(Curva C){this->C=C;}
+
 /*
  * Método Decodifica:
  * Decodifica el mensaje dado dos puntos que envia el usuario con el que se esta comunicando.
@@ -44,5 +37,22 @@ char Sistema::Decodificar(Punto M,Punto N){
     Serial.print(c);
     return c;
   }
+Punto Sistema::Codificar(Punto M,Punto publicKeyB){
+      Punto N;
+      Punto Aux;
+      Aux = Aritmetica::MultEyP(this->k,publicKeyB,this->C.getA(),this->C.getP());
+      N = Aritmetica::SumaPyQ(M,Aux,this->C.getP());
+      return N;    
+  }
+Punto Sistema::getkG(){
+    return Aritmetica::MultEyP(this->k,this->G,this->C.getA(),this->C.getP() );
+  }
 
-
+/*
+ * Métodos Accesores
+ */
+Punto Sistema::getPublicKey(){return this->publicKey;}
+Punto Sistema::getG(){return this->G;}
+Curva Sistema::getCurva(){return this->C;}
+void Sistema::setG(Punto G){this->G=G;}
+void Sistema::setCurva(Curva C){this->C=C;}
