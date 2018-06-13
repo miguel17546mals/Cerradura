@@ -25,7 +25,7 @@ class Curva
     long long CalcH(long long p,int n);
   public:
     Curva();
-    Curva(long long p,long long a,long long b,int M);
+    Curva(long long a,long long b,long long p,int M);
     Punto getG();
     long long getA();
     long long getB();

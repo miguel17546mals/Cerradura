@@ -28,8 +28,8 @@ class Sistema{
     Punto getPublicKey();
     Punto getG();
     Curva getCurva();
-    char Decodificar(Punto M,Punto N);
-    Punto Codificar(Punto M,Punto publicKeyB);
+    char Desencriptar(Punto M,Punto N);
+    Punto Encriptar(Punto M,Punto publicKeyB);
     //Punto publicKeyB();
     Punto getkG();
     void setG(Punto G);

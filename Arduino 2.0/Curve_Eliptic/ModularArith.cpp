@@ -59,6 +59,7 @@ static long long ModularArith::InvMod(long long a,long long b){
  * Regresa la potencia a^x mod m.
  */
 static long long ModularArith::PowMod(long long a,long long x,long long m){
+  /*
   Serial.print("Calculando: ");
   print_int64_t(a);
   Serial.print("^");
@@ -66,7 +67,7 @@ static long long ModularArith::PowMod(long long a,long long x,long long m){
   Serial.print(" mod ");
   print_int64_t(m);
   Serial.print(" = ");
-  
+  */
   long long res=1;
   a=a%m;
   while(x>0){
@@ -76,8 +77,10 @@ static long long ModularArith::PowMod(long long a,long long x,long long m){
       x=x /2;
       a=(a*a)%m;
     }
+    /*
    print_int64_t(res);
-    Serial.println();
+   Serial.println();
+   */
    return res; 
   }
 /*
@@ -86,7 +89,9 @@ static long long ModularArith::PowMod(long long a,long long x,long long m){
  * Regresa la raiz cuadrada, en dado caso que no exista regresa 0.
  */
 static long long ModularArith::SqrtMod(long long n,long long p){
-     Serial.println("Calculando y^2 mod p = n mod p ");     
+      /*
+     Serial.println("Calculando y^2 mod p = n mod p ");  
+     */   
      long long q=p-1;
      long long s=0;
      while(q%2 == 0){
@@ -96,11 +101,11 @@ static long long ModularArith::SqrtMod(long long n,long long p){
      
      if(s==1){
         long long r = PowMod(n,(p+1)/4,p);
-        
+        /*
         Serial.print("Solución y=");
         print_int64_t(r);
         Serial.println();
-        
+        */
         if(PowMod(r,2,p) == n%p){
             return r;
           }

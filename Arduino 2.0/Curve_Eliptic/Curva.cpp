@@ -2,7 +2,7 @@
 /*
  * Constructor Clase Curva.
  */
-Curva::Curva(long long p,long long a,long long b,int M){
+Curva::Curva(long long a,long long b,long long p,int M){
   this->p=p;
   this->a=a;
   this->b=b;

@@ -12,13 +12,15 @@
  */
 static Punto Mensaje::Codifica(char letra,long long h,long long a,long long b,long long p){
   int c=letra-31 , i=1;
-  /*
+
   Serial.print("Valor c:");
   Serial.println(c);
+
+
   Serial.print("Valor h:");
   print_int64_t(h);
   Serial.println();
-  */
+
   long long y=0;
   long long x=0;
   do{
@@ -39,8 +41,16 @@ static Punto Mensaje::Codifica(char letra,long long h,long long a,long long b,lo
     Serial.print("Congruencia resuelta :");
     print_int64_t(y);
     Serial.println();
-    */
+    */   
     i++;
+    if(i>h/4){
+        Serial.println("Este no se pudo :'v");
+        return Punto(x,0); 
+      } 
+    /*
+   Serial.println("Iteracion");
+   Serial.println(i); 
+   */
   }while(y==0);
   return Punto(x,y); 
 }
@@ -54,8 +64,9 @@ static Punto Mensaje::Codifica(char letra,long long h,long long a,long long b,lo
 static char Mensaje::Decodifica(Punto p,long long h){
   Serial.println("Decodificando");
   int c;
-  long long M,uno=1;
-  M=(p.getX()-uno)/h;
+  long long M;
+  M=(p.getX()-1)/h;
+  M=M+31;
   c=M;
   Serial.println(c);
   Serial.println("Ya estufas");
