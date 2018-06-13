@@ -14,7 +14,7 @@ long long b=17;
 Curva C (a,b,p,224);
 Punto G (566031,86796771);
 Sistema S(C,G);
-Punto publicKeyB;
+Punto publicKeyB (93445459,89916351);
 //Pin de salida:
 int pin=13;
 //tiempo en estado de espera de instrucciones.
@@ -36,7 +36,8 @@ void setup() {
    }else{
       Serial.println("Leyó correctamente");
       password=pass;
-    }
+   }
+
 }
 
 void loop() {
@@ -163,27 +164,31 @@ void loop() {
         if(s=="Change Pass:"){
             s=GetLine();
             if(s=="N:"){
+                //Leemos la nueva contraseña
                 s=GetLine();
                 Punto New [15];
                 int k=0;
                 int i=0,f;
                 String D;
                 String NewPass;
+                //La convertimos a Puntos
                 while(f!=-1){
-                       for(int j=0;j<15;j++){
-                             f=s.indexOf(";",i);
-                             D=s.substring(i,f);
-                             New[j]=stringToPunto(D);
-                             i=f+1;
-                             k++;
-                    }
+                     
+                   f=s.indexOf(";",i);
+                   D=s.substring(i,f);
+                   New[k]=stringToPunto(D);
+                   i=f+1;
+                   k++;
                   }
+               //La desencriptamos
                for(int l=0;l<k;l++){
                    char c=S.Desencriptar(M,New[l]);
                    NewPass+=c;
                 } 
+               //La escribimos en la memoria
                EEPROM.put(0,NewPass);
                password= NewPass;
+               Serial.println("Listo");
               }
           } 
       }
